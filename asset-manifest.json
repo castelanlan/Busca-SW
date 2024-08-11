@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/castelanlan/Busca-SW/static/css/main.515507bd.css",
+    "main.js": "/castelanlan/Busca-SW/static/js/main.342c8e08.js",
+    "static/js/453.91293ad9.chunk.js": "/castelanlan/Busca-SW/static/js/453.91293ad9.chunk.js",
+    "static/media/bg.png": "/castelanlan/Busca-SW/static/media/bg.488fc04fc7104a811c74.png",
+    "index.html": "/castelanlan/Busca-SW/index.html",
+    "main.515507bd.css.map": "/castelanlan/Busca-SW/static/css/main.515507bd.css.map",
+    "main.342c8e08.js.map": "/castelanlan/Busca-SW/static/js/main.342c8e08.js.map",
+    "453.91293ad9.chunk.js.map": "/castelanlan/Busca-SW/static/js/453.91293ad9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.515507bd.css",
+    "static/js/main.342c8e08.js"
+  ]
+}
