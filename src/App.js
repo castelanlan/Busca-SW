@@ -27,7 +27,7 @@ function App() {
 
   return (
     <div className="App">
-      <input type='text' id='busca' value={search} onChange={handleSearch} autoFocus />
+      <input type='text' id='busca' value={search} onChange={handleSearch} placeholder='Pesquise aqui' autoFocus />
 
       {Object.keys(data).length ? (
         <div className='results-gallery'>
@@ -38,11 +38,11 @@ function App() {
               {/* <p>{personagem.mass}</p> */}
               {/* <p>{personagem.hair_color}</p> */}
               {/* <p>{personagem.skin_color}</p> */}
-              <p>{personagem.birth_year}</p>
-              <p>{personagem.gender}</p>
-              <p>{personagem.eye_color}</p>
+              {/* <p>{personagem.birth_year}</p> */}
+              {/* <p>{personagem.gender}</p> */}
+              {/* <p>{personagem.eye_color}</p> */}
               {/* <p>{personagem.homeworld}</p> */}
-              <p>{personagem.films}</p>
+              {/* <p>{personagem.films}</p> */}
               {/* <p>{personagem.species}</p> */}
               {/* <p>{personagem.vehicles}</p> */}
               {/* <p>{personagem.starships}</p> */}
