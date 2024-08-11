@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/castelanlan/Busca-SW/static/css/main.515507bd.css",
-    "main.js": "/castelanlan/Busca-SW/static/js/main.342c8e08.js",
-    "static/js/453.91293ad9.chunk.js": "/castelanlan/Busca-SW/static/js/453.91293ad9.chunk.js",
-    "static/media/bg.png": "/castelanlan/Busca-SW/static/media/bg.488fc04fc7104a811c74.png",
-    "index.html": "/castelanlan/Busca-SW/index.html",
-    "main.515507bd.css.map": "/castelanlan/Busca-SW/static/css/main.515507bd.css.map",
-    "main.342c8e08.js.map": "/castelanlan/Busca-SW/static/js/main.342c8e08.js.map",
-    "453.91293ad9.chunk.js.map": "/castelanlan/Busca-SW/static/js/453.91293ad9.chunk.js.map"
+    "main.css": "./static/css/main.f98c651f.css",
+    "main.js": "./static/js/main.332b33d0.js",
+    "static/js/453.91293ad9.chunk.js": "./static/js/453.91293ad9.chunk.js",
+    "static/media/bg.png": "./static/media/bg.488fc04fc7104a811c74.png",
+    "index.html": "./index.html",
+    "main.f98c651f.css.map": "./static/css/main.f98c651f.css.map",
+    "main.332b33d0.js.map": "./static/js/main.332b33d0.js.map",
+    "453.91293ad9.chunk.js.map": "./static/js/453.91293ad9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.515507bd.css",
-    "static/js/main.342c8e08.js"
+    "static/css/main.f98c651f.css",
+    "static/js/main.332b33d0.js"
   ]
 }
