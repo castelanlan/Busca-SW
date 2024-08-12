@@ -1,8 +1,12 @@
 import './App.css';
+
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 import { useState, useEffect } from 'react';
 
-function App() {
-  // const [data, setData] = useState([]);
+function Main() {
   const [search, setSearch] = useState("");
   const [people, setPeople] = useState([])
   const [selec, setSelec] = useState([]);
@@ -11,23 +15,13 @@ function App() {
     const pesquisa = event.target.value.toLowerCase();
     setSearch(pesquisa)
 
-    // console.log(people)
     setSelec(
       people.filter((person) => (
-        // console.log(person);
-        // console.log(pesquisa);
-        // console.log(person.toLowerCase().includes(pesquisa))
-        person.toLowerCase().includes(pesquisa)
+        person[0].toLowerCase().includes(pesquisa)
       ))
     );
 
-    console.log(selec)
-
-
-    // people.forEach(p => p['id'] = p.url.split('/')[5]);
-
-    // console.log(people)
-    // console.log()
+    console.log(people)
   }
 
   useEffect(() => {
@@ -41,13 +35,12 @@ function App() {
         }
 
         const data = await response.json();
-        var personagem = (data.results) ? (data.results.map(person => person.name)) : (console.log(`DEU RUIM -> ${data}`))
+        var personagem = (data.results) ? (data.results.map(person => [person.name, person.url.split('/')[5], person.birth_year, person.gender, person.eye_color, person.films])) : (console.log(`DEU RUIM -> ${data}`))
         personagens.push(...personagem);
         console.log(personagens)
 
-        // Check for next page only if it exists
         if (data.next) {
-          await fetchCharacters(data.next); // Recursive call to fetch next page
+          await fetchCharacters(data.next);
         }
         else {
           setPeople(personagens)
@@ -57,25 +50,40 @@ function App() {
       }
     };
 
-    fetchCharacters("https://swapi.py4e.com/api/people/"); // Call the function on component mount
+    fetchCharacters("https://swapi.py4e.com/api/people/"); // ! api + rápida
   }, [])
 
   return (
-    <div className="App">
+    <div>
       <input type='text' id='busca' value={search} onChange={handleSearch} placeholder='Pesquise aqui' autoFocus />
-
       {selec.length ? (
         <div className='results-gallery'>
-          {selec.map((personagem, index) => (
-            <div key={`results-${index}`}>
-              <p>{personagem}</p>
-            </div>
+          {selec.map((personagem) => (
+            <Link key={personagem[0]} to={`/${personagem[1].toLowerCase().replace(" ", "_")}`}>{personagem[0]}</Link>
           ))
           }
         </div>
       ) : (
         <p>Busque pelo seu personagem</p>
       )}
+    </div>
+  )
+}
+
+function Details() {
+  const { id } = useParams();
+}
+
+
+function App() {
+
+  return (
+    <div className="App">
+      <Routes>
+
+        <Route path='/' element={<Main />} />
+        <Route path='/:query' element={<Details />} />
+      </Routes>
     </div >
   );
 }
