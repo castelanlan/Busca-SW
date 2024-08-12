@@ -20,8 +20,6 @@ function Main() {
         person[0].toLowerCase().includes(pesquisa)
       ))
     );
-
-    console.log(people)
   }
 
   useEffect(() => {
@@ -75,8 +73,7 @@ function Main() {
 function Details() {
   const { id } = useParams();
   var [charState, setCharState] = useState({})
-  var [allFilms, setAllFilms] = useState({})
-
+  var [allFilms, setAllFilms] = useState([])
 
   useEffect(() => {
     fetch('https://swapi.py4e.com/api/films').then(res => res.json())
@@ -85,37 +82,40 @@ function Details() {
         var all_films = res["results"]
         setAllFilms(all_films)
         console.log(2)
-      }).then(() => {
-        fetch(`https://swapi.py4e.com/api/people/${id}/`)
-        .then(res => res.json()).then(res => {
-          console.log(3)
-          console.log(allFilms)
-          
-          var name = res["name"]
-          var birth_year = res["birth_year"]
-          var gender = res["gender"]
-          var eye_color = res["eye_color"]
-          var filmes = res["films"].map(filme => Number(filme.split("/")[5]))
-          var filmes_info = []
-          
-          console.log(4)
+      })
+  }, [])
+
+  useEffect(() => {
+    fetch(`https://swapi.py4e.com/api/people/${id}/`)
+      .then(res => res.json()).then(res => {
+        console.log(3)
+        console.log(allFilms)
+
+        var name = res["name"]
+        var birth_year = res["birth_year"]
+        var gender = res["gender"]
+        var eye_color = res["eye_color"]
+        var filmes = res["films"].map(filme => Number(filme.split("/")[5]))
+        var filmes_info = []
+
+        if (allFilms.length > 0) {
           for (let index = 0; index < filmes.length; index++) {
             const filme_index = filmes[index];
             console.log(allFilms)
             filmes_info.push([allFilms[filme_index - 1].title, allFilms[filme_index - 1].release_date])
           }
-          
           console.log(5)
-            setCharState({
-              "name": name,
-              "birth_year": birth_year,
-              "gender": gender,
-              "eye_color": eye_color,
-              "filmes": filmes_info
-            })
+          setCharState({
+            "name": name,
+            "birth_year": birth_year,
+            "gender": gender,
+            "eye_color": eye_color,
+            "filmes": filmes_info
           })
+        } else {}
+
       })
-  }, [])
+  }, [id, allFilms])
 
   return (
     <>
