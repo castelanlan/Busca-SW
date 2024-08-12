@@ -35,7 +35,6 @@ function Main() {
         const data = await response.json();
         var personagem = (data.results) ? (data.results.map(person => [person.name, person.url.split('/')[5], person.birth_year, person.gender, person.eye_color, person.films])) : (console.log(`DEU RUIM -> ${data}`))
         personagens.push(...personagem);
-        console.log(personagens)
 
         if (data.next) {
           await fetchCharacters(data.next);
@@ -64,7 +63,7 @@ function Main() {
           }
         </div>
       ) : (
-        <p>Busque seu personagem favorito de Star Wars aqui.</p>
+        <p>Busque pelo seu personagem favorito de Star Wars!</p>
       )}
     </div>
   )
@@ -116,30 +115,30 @@ function Details() {
   return (
     <div>
       <h1>Detalhes do personagem</h1>
-      <p>Nome: <strong>{charState.name}</strong></p>
-      <p>Ano de nascimento: <strong>{charState.birth_year}</strong></p>
-      <p>Gênero: <strong>{charState.gender}</strong></p>
-      <p>Cor do olho: <strong>{charState.eye_color}</strong></p>
+      <div>Nome <h2 style={{display: 'inline'}}><strong>{charState.name}</strong></h2></div>
+      <div>Ano de nascimento <h2 style={{display: 'inline'}}><strong>{charState.birth_year}</strong></h2></div>
+      <div>Gênero <h2 style={{display: 'inline'}}><strong>{charState.gender}</strong></h2></div>
+      <div>Cor do olho <h2 style={{display: 'inline'}}><strong>{charState.eye_color}</strong></h2></div>
       <p><strong>Filmes {charState.filmes ? `(${charState.filmes.length})` : <></>}:</strong></p>
       <div>
         {charState.filmes ? (charState.filmes.map((filme) => (
-          <div>
-            <span key={filme}><strong>{filme[0]}</strong></span> <span key={filme}>{filme[1]}</span>
+          <div key={filme[0]}>
+            <span key={filme[0]}><strong>{filme[0]}</strong></span> <span key={filme[1]}>{filme[1]}</span>
           </div>
         ))) : (<></>)}
       </div>
-      <Link to={'/'}>Voltar</Link>
+      <div id='voltar'>
+        <Link to={'/'}>Voltar</Link>
+      </div>
     </div>
   )
 }
-
 
 function App() {
 
   return (
     <div className="App">
       <Routes>
-
         <Route path='/' element={<Main />} />
         <Route path='/:id' element={<Details />} />
       </Routes>
