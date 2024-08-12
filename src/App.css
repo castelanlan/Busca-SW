@@ -8,10 +8,10 @@
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-#busca {
+#busca {  
   background-color: rgba(0 0 0 / 0);
   border: none;
-  background: -webkit-linear-gradient(#ffffffe6, #9b9b9bbc);
+  background: -webkit-linear-gradient(#ffffffab, #dcdcdc00);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
