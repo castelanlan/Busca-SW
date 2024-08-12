@@ -64,7 +64,7 @@ function Main() {
           }
         </div>
       ) : (
-        <p>Busque pelo seu personagem</p>
+        <p>Busque seu personagem favorito de Star Wars aqui.</p>
       )}
     </div>
   )
@@ -78,18 +78,14 @@ function Details() {
   useEffect(() => {
     fetch('https://swapi.py4e.com/api/films').then(res => res.json())
       .then(res => {
-        console.log(1)
         var all_films = res["results"]
         setAllFilms(all_films)
-        console.log(2)
       })
   }, [])
 
   useEffect(() => {
     fetch(`https://swapi.py4e.com/api/people/${id}/`)
       .then(res => res.json()).then(res => {
-        console.log(3)
-        console.log(allFilms)
 
         var name = res["name"]
         var birth_year = res["birth_year"]
@@ -101,10 +97,9 @@ function Details() {
         if (allFilms.length > 0) {
           for (let index = 0; index < filmes.length; index++) {
             const filme_index = filmes[index];
-            console.log(allFilms)
             filmes_info.push([allFilms[filme_index - 1].title, allFilms[filme_index - 1].release_date])
           }
-          console.log(5)
+
           setCharState({
             "name": name,
             "birth_year": birth_year,
@@ -112,27 +107,29 @@ function Details() {
             "eye_color": eye_color,
             "filmes": filmes_info
           })
-        } else {}
+          // console.log(charState)
+        } else { }
 
       })
   }, [id, allFilms])
 
   return (
-    <>
-      <h2>Detalhes do personagem</h2>
-      <p>{charState.name}</p>
-      <p>{charState.birth_year}</p>
-      <p>{charState.gender}</p>
-      <p>{charState.eye_color}</p>
-      <p>{charState.filmes}</p>
-      {charState.filmes ? (charState.filmes.map((filme) => {
-        <div>
-          <p>{filme[0]}</p>
-          <p>{filme[1]}</p>
-        </div>
-      })) : (<></>)}
-      <p>{charState.filmes_info}</p>
-    </>
+    <div>
+      <h1>Detalhes do personagem</h1>
+      <p>Nome: <strong>{charState.name}</strong></p>
+      <p>Ano de nascimento: <strong>{charState.birth_year}</strong></p>
+      <p>Gênero: <strong>{charState.gender}</strong></p>
+      <p>Cor do olho: <strong>{charState.eye_color}</strong></p>
+      <p><strong>Filmes {charState.filmes ? `(${charState.filmes.length})` : <></>}:</strong></p>
+      <div>
+        {charState.filmes ? (charState.filmes.map((filme) => (
+          <div>
+            <span key={filme}><strong>{filme[0]}</strong></span> <span key={filme}>{filme[1]}</span>
+          </div>
+        ))) : (<></>)}
+      </div>
+      <Link to={'/'}>Voltar</Link>
+    </div>
   )
 }
 
